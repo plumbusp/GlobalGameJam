@@ -1,18 +1,27 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Hand : MonoBehaviour
 {
-    private Camera _mainCamera;
-    private Vector3 _mouseWorldPosition;
+    [SerializeField] private Cup _cup;
+    private InputActions _actions;
 
     private void Start()
     {
-        _mainCamera = Camera.main;
+        _actions = new InputActions();
+        _actions.Player.Enable();
+        _actions.Player.Click.started += SnapCup;
+        _actions.Player.Click.canceled += UnsnapCup;
     }
 
-    private void Update()
+    private void SnapCup(InputAction.CallbackContext context)
     {
-        _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = _mouseWorldPosition;
+        _cup.Follow = true;
+    }
+
+    private void UnsnapCup(InputAction.CallbackContext context)
+    {
+        _cup.Follow = false;
     }
 }
