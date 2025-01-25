@@ -25,12 +25,6 @@ public class OrderController : MonoBehaviour
         textController.Initialize(text);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void RandomizeOrder()
     {
         currentFlavour = Random.Range(1, 3);
@@ -47,7 +41,17 @@ public class OrderController : MonoBehaviour
                 currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count - 1)];
                 break;
         }
+        StartTextBubble();
+    }
 
+    public void StartTextBubble()
+    {
+        textBubble.gameObject.SetActive(true);
         textController.StartDialog(currentVoiceLine);
+    }
+
+    public void CloseBubble()
+    {
+        textBubble.gameObject.SetActive(false);
     }
 }
