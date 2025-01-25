@@ -28,17 +28,22 @@ public class AlienController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            currentAlien.GetComponent<Animator>().SetTrigger("Exit");
-            orderController.CloseBubble();
-            StartCoroutine(DestroyAlienAfterDelay());
+            UnspawnAlien();
 
         }
     }
 
-    private void SpawnAlien()
+    public void SpawnAlien()
     {
         currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)],aliensParent);
         StartCoroutine(StartDialogAfterDelay());
+    }
+
+    public void UnspawnAlien()
+    {
+        currentAlien.GetComponent<Animator>().SetTrigger("Exit");
+        orderController.CloseBubble();
+        StartCoroutine(DestroyAlienAfterDelay());
     }
 
     private IEnumerator StartDialogAfterDelay()

@@ -43,6 +43,9 @@ TagManager:
   - name: Background
     uniqueID: 446630477
     locked: 0
+  - name: BackgroundCity
+    uniqueID: 988196439
+    locked: 0
   - name: Alien
     uniqueID: 1795413983
     locked: 0
