@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AlienController : MonoBehaviour
 {
-    [SerializeField] List<Transform> aliens = new List<Transform>();
+    [SerializeField] List<GameObject> aliens = new List<GameObject>();
     [SerializeField] Transform aliensParent;
     [SerializeField] float startDialogDelay = 0.4f;
 
     [Header("References")]
     [SerializeField] OrderController orderController;
 
-    private Transform currentAlien;
+    private GameObject currentAlien;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,12 +30,14 @@ public class AlienController : MonoBehaviour
         {
             currentAlien.GetComponent<Animator>().SetTrigger("Exit");
             orderController.CloseBubble();
+            StartCoroutine(DestroyAlienAfterDelay());
+
         }
     }
 
     private void SpawnAlien()
     {
-        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count - 1)],aliensParent);
+        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)],aliensParent);
         StartCoroutine(StartDialogAfterDelay());
     }
 
@@ -43,5 +45,11 @@ public class AlienController : MonoBehaviour
     {
         yield return new WaitForSeconds(startDialogDelay);
         orderController.RandomizeOrder();
+    }
+
+    private IEnumerator DestroyAlienAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(currentAlien);
     }
 }

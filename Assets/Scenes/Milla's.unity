@@ -437,68 +437,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &940237086
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7007284327834067344}
-    m_Modifications:
-    - target: {fileID: 2655769678490118605, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_Name
-      value: Alien
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
---- !u!4 &940237087 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8750168451930158379, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
-  m_PrefabInstance: {fileID: 940237086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261923527
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1261923528}
   - component: {fileID: 1261923529}
+  - component: {fileID: 1261923530}
   m_Layer: 0
   m_Name: OrderController
   m_TagString: Untagged
@@ -552,6 +491,26 @@ MonoBehaviour:
   - Could I get a stinky human flavoured bubble tea? Extra stink
   flavour3Lines:
   - Just a blueberry bubble tea, please
+--- !u!114 &1261923530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261923527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7437c7abd687cbd40b9b686f24bcc8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aliens:
+  - {fileID: 2655769678490118605, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
+  - {fileID: 2655769678490118605, guid: 1bd8352530a9e794b90691631dd5fa18, type: 3}
+  - {fileID: 2655769678490118605, guid: 33626bcb56448d64a971dd0cd8c8bec0, type: 3}
+  - {fileID: 2655769678490118605, guid: f9c218e19a4583443b5ba3a303e6044e, type: 3}
+  aliensParent: {fileID: 7007284327834067344}
+  startDialogDelay: 0.4
+  orderController: {fileID: 1261923529}
 --- !u!1 &1298556144
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,10 +543,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2022145784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 698.42, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 419.21564, y: -63.504997}
+  m_SizeDelta: {x: 698.42, y: 55.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298556146
 MonoBehaviour:
@@ -708,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2022145784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -727,7 +686,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -530, y: 273}
-  m_SizeDelta: {x: 838.4313, y: 0}
+  m_SizeDelta: {x: 838.4313, y: 269}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2022145785
 MonoBehaviour:
@@ -874,10 +833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4098328723115699684, guid: 3c0d37c5afd6a144e857a8efa662cba2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 940237087}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0d37c5afd6a144e857a8efa662cba2, type: 3}
 --- !u!4 &7007284327834067344 stripped

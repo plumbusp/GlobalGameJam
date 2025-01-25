@@ -27,18 +27,18 @@ public class OrderController : MonoBehaviour
 
     public void RandomizeOrder()
     {
-        currentFlavour = Random.Range(1, 3);
+        currentFlavour = Random.Range(1, 4);
 
         switch (currentFlavour)
         {
             case 1:
-                currentVoiceLine = flavour1Lines[Random.Range(0, flavour1Lines.Count - 1)];
+                currentVoiceLine = flavour1Lines[Random.Range(0, flavour1Lines.Count)];
                 break;
             case 2:
-                currentVoiceLine = flavour2Lines[Random.Range(0, flavour1Lines.Count - 1)];
+                currentVoiceLine = flavour2Lines[Random.Range(0, flavour1Lines.Count)];
                 break;
             case 3:
-                currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count - 1)];
+                currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count)];
                 break;
         }
         StartTextBubble();
