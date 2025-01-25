@@ -3,10 +3,11 @@ using UnityEngine;
 public class Cup : MonoBehaviour
 {
     [SerializeField] private float _MoveSpeed;
+    [SerializeField] private Rigidbody2D _rb1;
+    [SerializeField] private Rigidbody2D _rb2;
     private Vector3 _mouseWorldPosition;
     private Vector3 _position;
     private Camera _mainCamera;
-    private Rigidbody2D _rb;
 
     private bool _follow;
     public bool Follow 
@@ -23,7 +24,6 @@ public class Cup : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
     }
 
@@ -32,12 +32,16 @@ public class Cup : MonoBehaviour
         if(!_follow)
             return;
 
+        Debug.Log("Following");
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _position = Vector3.Lerp(transform.position, _mouseWorldPosition, _MoveSpeed * Time.deltaTime);
+        _position = Vector3.Lerp(_rb1.transform.position, _mouseWorldPosition, _MoveSpeed * Time.deltaTime);
     }
     private void FixedUpdate()
     {
-        _rb.MovePosition(_position);
+        if (!_follow)
+            return;
+
+        _rb1.MovePosition(_position);
     }
 }
 
