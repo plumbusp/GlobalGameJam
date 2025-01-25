@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Hand : MonoBehaviour
+public class Cursor : MonoBehaviour
 {
     [SerializeField] private Cup _cup;
     private InputActions _actions;
