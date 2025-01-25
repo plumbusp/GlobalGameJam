@@ -12,10 +12,12 @@ public class Fossit : MonoBehaviour
     private FluidParticle _currentParticle;
     private bool _break;
 
+    public bool IsOpen {  get; private set; }
+
     private void Start()
     {
         _spawnDelaySeconds = new WaitForSeconds(_spawnDelay);
-        Open();
+        IsOpen = false;
     }
 
     public void Open()
@@ -24,10 +26,16 @@ public class Fossit : MonoBehaviour
             return;
 
         StartCoroutine(SpawnFluid());
+        IsOpen = true;
+        Debug.Log("OpEN");
     }
     public void Close()
     {
         _break = true;
+        StopAllCoroutines();
+        _currentCourutine = null;
+        IsOpen = false;
+        Debug.Log("CLOSE");
     }
 
     private IEnumerator SpawnFluid()
