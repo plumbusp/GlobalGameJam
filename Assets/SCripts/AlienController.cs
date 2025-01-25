@@ -27,7 +27,7 @@ public class AlienController : MonoBehaviour
 
     public void SpawnAlien()
     {
-        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)],aliensParent);
+        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)], aliensParent);
         StartCoroutine(StartDialogAfterDelay());
     }
 

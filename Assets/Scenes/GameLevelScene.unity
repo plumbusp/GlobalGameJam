@@ -1543,7 +1543,7 @@ MonoBehaviour:
   - {fileID: 2655769678490118605, guid: 1bd8352530a9e794b90691631dd5fa18, type: 3}
   - {fileID: 2655769678490118605, guid: 33626bcb56448d64a971dd0cd8c8bec0, type: 3}
   - {fileID: 2655769678490118605, guid: f9c218e19a4583443b5ba3a303e6044e, type: 3}
-  aliensParent: {fileID: 0}
+  aliensParent: {fileID: 1781889561}
   startDialogDelay: 0.4
   orderController: {fileID: 964875955}
 --- !u!114 &964875955
@@ -2529,6 +2529,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 324721261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1781889560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1781889561}
+  m_Layer: 0
+  m_Name: AliensParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1781889561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781889560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9597437, y: -4.5330257, z: -0.08088143}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974217027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,3 +2819,4 @@ SceneRoots:
   - {fileID: 332481036}
   - {fileID: 420576732}
   - {fileID: 938502817}
+  - {fileID: 1781889561}
