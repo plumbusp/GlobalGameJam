@@ -3,6 +3,11 @@ using UnityEngine.InputSystem;
 
 public class Cup : MonoBehaviour
 {
+    [Header("OverlapArea")]
+    [SerializeField] Transform _pointA;
+    [SerializeField] Transform _pointB;
+
+    [Header("Movement")]
     [SerializeField] private float _MoveSeconds;
     [SerializeField] private Rigidbody2D _rb1;
     private Vector3 _mouseWorldPosition;
@@ -49,7 +54,13 @@ public class Cup : MonoBehaviour
         _initialRotation = _rb1.rotation;
     }
 
-    public void Reset()
+    public int CountFluid()
+    {
+        var colliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, LayerMask.NameToLayer("Liquids"));
+        return colliders.Length;
+    }
+
+    public void ResetCup()
     {
         _delivered = false;
         _follow = false;
@@ -68,7 +79,6 @@ public class Cup : MonoBehaviour
         if(!_follow)
             return;
 
-        Debug.Log("Following");
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         _newPosition = Vector3.SmoothDamp(_rb1.transform.position, _mouseWorldPosition, ref _refMoveVelocity, _MoveSeconds * Time.deltaTime);
         //if(Vector2.Distance(_newPosition, _mouseWorldPosition) <= 0.2f)
