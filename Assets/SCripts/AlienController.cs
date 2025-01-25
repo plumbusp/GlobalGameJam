@@ -22,15 +22,7 @@ public class AlienController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SpawnAlien();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            UnspawnAlien();
-
-        }
+     
     }
 
     public void SpawnAlien()

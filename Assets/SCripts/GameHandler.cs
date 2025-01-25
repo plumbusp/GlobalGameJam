@@ -24,13 +24,26 @@ public class GameHandler : MonoBehaviour
     private float currentStars = 0f;
     private int currentAlien = 0;
 
+    private IEnumerator patienceTimer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         alienController = GetComponent<AlienController>();
         orderController = GetComponent<OrderController>();
 
+        patienceTimer = PatienceTimer();
+
         StartGame();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            CustomerLeaves();
+            AddToScore();
+        }
     }
 
     private void StartGame()
@@ -41,14 +54,16 @@ public class GameHandler : MonoBehaviour
     public void AddToScore()
     {
         score = CalculateScore();
+        Debug.Log(score);
     }
 
     public void CustomerLeaves()
     {
-        StopCoroutine(PatienceTimer());
+        StopAllCoroutines();
         alienController.UnspawnAlien();
 
         StartCoroutine(CallNextCustomerAfterDelay());
+        satisfactionIndicator.gameObject.SetActive(false);
     }
 
     private float CalculateScore()
