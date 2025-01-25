@@ -16,7 +16,7 @@ TagManager:
   - Liquids
   - IgnoreLiquids
   - GlassRaycastCatcher
-  - 
+  - Boba
   - 
   - 
   - 
@@ -66,6 +66,9 @@ TagManager:
     locked: 0
   - name: Liquid
     uniqueID: 1476451813
+    locked: 0
+  - name: Boba
+    uniqueID: 343360895
     locked: 0
   m_RenderingLayers:
   - Default

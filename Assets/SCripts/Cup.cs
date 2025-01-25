@@ -65,7 +65,7 @@ public class Cup : MonoBehaviour
     /// Returns count of liquid particles
     /// </summary>
     /// <returns></returns>
-    public void CountContents(out int particlesAmount, out int liquidsUsed, out int primarLiquidID)
+    public void CountContents(out int particlesAmount, out int liquidsUsed, out int primarLiquidID, out int bobaCount)
     {
         int id_1_particles = 0;
         int id_2_particles = 0;
@@ -75,12 +75,15 @@ public class Cup : MonoBehaviour
         int particleID;
 
         Debug.Log(LayerMask.LayerToName(6));
-        int layerMask = LayerMask.GetMask("Liquids");
-        var colliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, layerMask);
-        for (int i = 0; i < colliders.Length; i++)
+        int liquidLayerMask = LayerMask.GetMask("Liquids");
+        int nextLayerMask = LayerMask.GetMask("Boba");
+        var liquidColliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, liquidLayerMask);
+        var bobaColliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, nextLayerMask);
+
+        for (int i = 0; i < liquidColliders.Length; i++)
         {
-            colliders[i].gameObject.SetActive(false);
-            particleID = colliders[i].GetComponent<FluidParticle>().ID;
+            liquidColliders[i].gameObject.SetActive(false);
+            particleID = liquidColliders[i].GetComponent<FluidParticle>().ID;
 
             switch (particleID)
             {
@@ -89,6 +92,11 @@ public class Cup : MonoBehaviour
                 case 3: id_3_particles++; break;
             }
         }
+        for (int i = 0; i < bobaColliders.Length; i++)
+        {
+            bobaColliders[i].gameObject.SetActive(false);
+        }
+
         if (id_1_particles > 1)
             liquidUsedInner++;
         if (id_2_particles > 1)
@@ -98,7 +106,8 @@ public class Cup : MonoBehaviour
 
         liquidsUsed = liquidUsedInner;
         primarLiquidID = CountPrimarLiwuidID(id_1_particles, id_2_particles, id_3_particles);
-        particlesAmount = colliders.Length;
+        particlesAmount = liquidColliders.Length;
+        bobaCount = bobaColliders.Length;
 
     }
 

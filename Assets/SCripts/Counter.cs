@@ -47,8 +47,9 @@ public class Counter : MonoBehaviour
         int i;
         int y;
         int x;
-        _cup.CountContents(out i,out y, out x);
-        Debug.Log($" {i} {y}  {x} ");
+        int z;
+        _cup.CountContents(out i,out y, out x, out z);
+        Debug.Log($" {i} {y}  {x}  {z}");
         _cup.Delivered = true;
         //Set cup to false
     }
