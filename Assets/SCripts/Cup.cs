@@ -7,10 +7,14 @@ public class Cup : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb1;
     [SerializeField] private Rigidbody2D _rb2;
     private Vector3 _mouseWorldPosition;
-    private Vector3 _position;
+    private Vector3 _newPosition;
+    private Vector3 _refMoveVelocity;
+
     private Camera _mainCamera;
+
     [SerializeField]  private float rotationSpeed;
     private float _initialRotation;
+    private float _newRotation;
 
     private bool _follow;
     public bool Follow 
@@ -23,8 +27,6 @@ public class Cup : MonoBehaviour
         {
             _follow = value;
             _rb1.gravityScale = -1 * _rb1.gravityScale;
-            _rb1.freezeRotation = !_rb1.freezeRotation;
-            //Debug.Log("Gravity scale " + _rb1.gravityScale);
         }
     }
 
@@ -41,21 +43,16 @@ public class Cup : MonoBehaviour
 
         Debug.Log("Following");
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _position = Vector3.Slerp(_rb1.transform.position, _mouseWorldPosition, _MoveSpeed * Time.deltaTime);
-
-        //var angle = Vector3.SignedAngle(_rb1.transform.rotation.eulerAngles, _initialRotation.eulerAngles, Vector3.forward);
-        //var angle = _rb1.rotation - _initialRotation.
-        //if (angle >= 0.5f)
+        _newPosition = Vector3.SmoothDamp(_rb1.transform.position, _mouseWorldPosition, ref _refMoveVelocity, _MoveSpeed * Time.deltaTime);
+        //if(Vector2.Distance(_newPosition, _mouseWorldPosition) <= 0.2f)
         //{
-        //    _rb1.rotation
+        //    _newPosition = _mouseWorldPosition;
         //}
 
         float currentRotation = _rb1.rotation;
-
         if (Mathf.Abs(Mathf.DeltaAngle(currentRotation, _initialRotation)) > 0.1f)
         {
-            float newRotation = Mathf.LerpAngle(currentRotation, _initialRotation, Time.deltaTime * rotationSpeed);
-            _rb1.MoveRotation(newRotation);
+            _newRotation = Mathf.LerpAngle(currentRotation, _initialRotation, Time.deltaTime * rotationSpeed);
         }
 
     }
@@ -64,7 +61,8 @@ public class Cup : MonoBehaviour
         if (!_follow)
             return;
 
-        _rb1.MovePosition(_position);
+        _rb1.MovePosition(_newPosition);
+        _rb1.MoveRotation(_newRotation);
     }
 }
 
