@@ -25,6 +25,7 @@ public class Fossit : MonoBehaviour
         if (_currentCourutine != null)
             return;
 
+        _break = false;
         StartCoroutine(SpawnFluid());
         IsOpen = true;
         Debug.Log("OpEN");
