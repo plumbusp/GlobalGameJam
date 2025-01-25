@@ -38,6 +38,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 446630477
+    locked: 0
+  - name: Alien
+    uniqueID: 1795413983
+    locked: 0
+  - name: Table
+    uniqueID: 1357591669
+    locked: 0
+  - name: MachineBack
+    uniqueID: 477651651
+    locked: 0
+  - name: MachineNozzle
+    uniqueID: 1570646675
+    locked: 0
+  - name: MachineFront
+    uniqueID: 3835491233
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
