@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - FluidDestroyer
+  - GlassBottom
   layers:
   - Default
   - TransparentFX

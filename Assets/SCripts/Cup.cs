@@ -29,14 +29,42 @@ public class Cup : MonoBehaviour
         }
     }
 
+    private bool _delivered;
+    public bool Delivered
+    {
+        get
+        {
+            return _delivered;
+        }
+        set
+        {
+            _delivered = value;
+            _rb1.simulated = false;
+        }
+    }
+
     private void Start()
     {
         _mainCamera = Camera.main;
         _initialRotation = _rb1.rotation;
     }
 
+    public void Reset()
+    {
+        _delivered = false;
+        _follow = false;
+        _rb1.simulated = true;
+    }
+    public void SetPosition(Transform point)
+    {
+        _rb1.transform.position = point.position;
+    }
+
     private void Update()
     {
+        if (_delivered)
+            return;
+
         if(!_follow)
             return;
 
@@ -63,6 +91,7 @@ public class Cup : MonoBehaviour
         _rb1.MovePosition(_newPosition);
         _rb1.MoveRotation(_newRotation);
         //_rb1.angularVelocity = Mathf.Clamp(_rb1.angularVelocity,0, 10f);
+        //_rb1.totalForce
     }
 }
 
