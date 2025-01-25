@@ -43,6 +43,7 @@ public class Counter : MonoBehaviour
 
     private void HandleCupDelivered()
     {
+        _cursor.OnCupUnsnaped -= HandleCupDelivered;
         // count staff
         int i;
         int y;

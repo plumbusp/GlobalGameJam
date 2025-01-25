@@ -32,13 +32,11 @@ public class Cursor : MonoBehaviour
         if (Physics2D.Raycast(startPoint, Vector3.forward, 30f, layerMask))
         {
             _cup.Follow = true;
-            Debug.Log("ASFASD");
         }
     }
 
     private void UnsnapCup(InputAction.CallbackContext context)
     {
-        Debug.Log("FFFFF");
         _cup.Follow = false;
         OnCupUnsnaped?.Invoke();
     }

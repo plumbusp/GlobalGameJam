@@ -70,6 +70,9 @@ TagManager:
   - name: Boba
     uniqueID: 343360895
     locked: 0
+  - name: Glass
+    uniqueID: 3522689963
+    locked: 0
   m_RenderingLayers:
   - Default
   - Liquid

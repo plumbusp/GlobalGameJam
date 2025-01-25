@@ -23,6 +23,7 @@ public class FluidParticle : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(name);
         if(other.collider.CompareTag("FluidDestroyer"))
             gameObject.SetActive(false);
 	}
