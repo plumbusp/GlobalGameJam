@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class GameHandler : MonoBehaviour
     [SerializeField] int amountOfCustomers = 8;
     [SerializeField] float delayBetweenCustomers = 1f;
     [SerializeField] float customerPatienceAmount = 15f;
+
+    [Header("UI elements")]
+    [SerializeField] Image satisfactionIndicator;
+    [SerializeField] Sprite satisfactionHappy;
+    [SerializeField] Sprite satisfactionMeh;
+    [SerializeField] Sprite satisfactionAngry;
 
 
     private float score;
@@ -64,19 +71,24 @@ public class GameHandler : MonoBehaviour
 
     private IEnumerator PatienceTimer()
     {
+        yield return new WaitForSeconds(0.4f);
         Debug.Log("patience at 3 stars");
         currentStars = 3f;
+        satisfactionIndicator.sprite = satisfactionHappy;
+        satisfactionIndicator.gameObject.SetActive(true);
 
         float delay = customerPatienceAmount / 3f;
 
         yield return new WaitForSeconds(delay);
         Debug.Log("patience at 2 stars");
         //change indicator sprite
+        satisfactionIndicator.sprite = satisfactionMeh;
         currentStars = 2f;
 
         yield return new WaitForSeconds(delay);
         Debug.Log("patience at 1 stars");
         //change indicator sprite
+        satisfactionIndicator.sprite = satisfactionAngry;
         currentStars = 1f;
 
         yield return new WaitForSeconds(delay);
@@ -84,6 +96,7 @@ public class GameHandler : MonoBehaviour
         currentStars = 0f;
         AddToScore();
         alienController.UnspawnAlien();
+        satisfactionIndicator.gameObject.SetActive(false);
 
         StartCoroutine(CallNextCustomerAfterDelay());
     }
