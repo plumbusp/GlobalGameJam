@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f235c44b75e54c94ea48ae69189ecd3f
+guid: e5983556537ac874cb762f06313757a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3558552238673493281
-    second: Customer1_0
+      213: 4285069741209924448
+    second: Soft button down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Customer1_0
+      name: Soft button down_0
       rect:
         serializedVersion: 2
-        x: 52
+        x: 0
         y: 0
-        width: 401
-        height: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 62, y: 62, z: 62, w: 62}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd2023bc79b7d9ec0800000000000000
-      internalID: -3558552238673493281
+      spriteID: 063b792f930a77b30800000000000000
+      internalID: 4285069741209924448
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4700870a65fc9544a84f90f583ec716c
+    spriteID: 8aeaf8f4d3c7eca47878fde810ee0ed1
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Customer1_0: -3558552238673493281
+      Soft button down_0: 4285069741209924448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

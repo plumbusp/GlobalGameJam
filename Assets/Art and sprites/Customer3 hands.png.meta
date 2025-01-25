@@ -106,12 +106,12 @@ TextureImporter:
       name: Customer4 hands_0
       rect:
         serializedVersion: 2
-        x: 87
+        x: 52
         y: 129
-        width: 65
+        width: 408
         height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.49999997, y: 5.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -124,33 +124,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Customer4 hands_1
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 129
-        width: 65
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e687959fbba344c20800000000000000
-      internalID: 3189739015101839470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1bafb14ef34b9f14ea7279b34c73d3c4
     internalID: 0
     vertices: []
     indices: 
