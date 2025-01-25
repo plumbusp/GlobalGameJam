@@ -981,6 +981,10 @@ PrefabInstance:
       value: WaterFossit_octupus
       objectReference: {fileID: 0}
     - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
+      propertyPath: _fluidName
+      value: Octupus
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
       propertyPath: _spawnDelay
       value: 0.13
       objectReference: {fileID: 0}
@@ -1023,12 +1027,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Fluid1
+  - tag: Octupus
     poolSize: 300
     fluidID: 1
-  - tag: Fluid2
+    Color: {r: 0.882353, g: 0.5568628, b: 0.5803922, a: 1}
+  - tag: Sock
     poolSize: 300
     fluidID: 2
+    Color: {r: 0.9568628, g: 0.9333334, b: 0.86274517, a: 1}
+  - tag: Blueberry
+    poolSize: 300
+    fluidID: 3
+    Color: {r: 0.48235297, g: 0.427451, b: 0.77647066, a: 1}
   prefabForFluidParticle: {fileID: 200678156964790618, guid: d812d218db7eb624fb7b09ef4e19a2f2, type: 3}
 --- !u!4 &515125315
 Transform:
@@ -1832,6 +1842,10 @@ PrefabInstance:
       value: WaterFossit_Sock
       objectReference: {fileID: 0}
     - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
+      propertyPath: _fluidName
+      value: Sock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
       propertyPath: _spawnDelay
       value: 0.13
       objectReference: {fileID: 0}
@@ -2281,6 +2295,10 @@ PrefabInstance:
     - target: {fileID: 3605381932436621515, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
       propertyPath: m_Name
       value: WaterFossit_Blueberry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
+      propertyPath: _fluidName
+      value: Blueberry
       objectReference: {fileID: 0}
     - target: {fileID: 3869280830522203463, guid: 5aaf4a7607237c8499d8be530e30885a, type: 3}
       propertyPath: _spawnDelay

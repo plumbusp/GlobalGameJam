@@ -7,6 +7,7 @@ public class PoolSettings
     public string tag;
     public int poolSize;
     public int fluidID;
+    public Color Color;
 }
 
 public class FluidPooler : MonoBehaviour
@@ -40,6 +41,7 @@ public class FluidPooler : MonoBehaviour
             {
                 FluidParticle obj = Instantiate(prefabForFluidParticle, transform);
                 obj.ID = settings.fluidID;
+                obj.Color = settings.Color;
                 obj.gameObject.SetActive(false);
                 pool.Enqueue(obj);
             }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Fossit : MonoBehaviour
 {
+    [SerializeField] private string _fluidName;
     [SerializeField] private FluidPooler objectPooler;
     [SerializeField] private Transform _particlesSpawnPosition;
     [SerializeField] private float _spawnDelay;
@@ -44,7 +45,7 @@ public class Fossit : MonoBehaviour
         while (true)
         {
             yield return _spawnDelaySeconds;
-            _currentParticle = objectPooler.GetPoolObject("Fluid1");
+            _currentParticle = objectPooler.GetPoolObject(_fluidName);
             _currentParticle.SetFall(_particlesSpawnPosition.position);
             if(_break)
                 break;
