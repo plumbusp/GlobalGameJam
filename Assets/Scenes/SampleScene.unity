@@ -1377,7 +1377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1327192260
 Transform:
   m_ObjectHideFlags: 0
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPooler: {fileID: 515125314}
   _particlesSpawnPosition: {fileID: 1997622094}
-  _spawnDelay: 0.05
+  _spawnDelay: 0.1
 --- !u!1 &2018749146
 GameObject:
   m_ObjectHideFlags: 0
