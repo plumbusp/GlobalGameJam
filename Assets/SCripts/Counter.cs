@@ -44,7 +44,11 @@ public class Counter : MonoBehaviour
     private void HandleCupDelivered()
     {
         // count staff
-        Debug.Log(_cup.CountFluid());
+        int i;
+        int y;
+        int x;
+        _cup.CountContents(out i,out y, out x);
+        Debug.Log($" {i} {y}  {x} ");
         _cup.Delivered = true;
         //Set cup to false
     }
