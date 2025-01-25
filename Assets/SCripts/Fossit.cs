@@ -35,7 +35,6 @@ public class Fossit : MonoBehaviour
         while (true)
         {
             yield return _spawnDelaySeconds;
-            Debug.Log("SpawnFluid");
             _currentParticle = objectPooler.GetPoolObject("Fluid1");
             _currentParticle.SetFall(_particlesSpawnPosition.position);
             if(_break)

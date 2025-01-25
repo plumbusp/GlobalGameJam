@@ -62,6 +62,7 @@ public class Cup : MonoBehaviour
 
         _rb1.MovePosition(_newPosition);
         _rb1.MoveRotation(_newRotation);
+        //_rb1.angularVelocity = Mathf.Clamp(_rb1.angularVelocity,0, 10f);
     }
 }
 
