@@ -5,6 +5,7 @@ public class GameHandler : MonoBehaviour
 {
     //References
     private AlienController alienController;
+    private OrderController orderController;
 
     [Header("Game variables")]
     [SerializeField] int amountOfCustomers = 8;
@@ -14,17 +15,20 @@ public class GameHandler : MonoBehaviour
 
     private float score;
     private float currentStars = 0f;
+    private int currentAlien = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         alienController = GetComponent<AlienController>();
+        orderController = GetComponent<OrderController>();
+
+        StartGame();
     }
 
     private void StartGame()
     {
-        alienController.SpawnAlien();
-        StartCoroutine(PatienceTimer());
+        StartCoroutine(CallNextCustomerAfterDelay());
     }
 
     public void AddToScore()
@@ -36,12 +40,26 @@ public class GameHandler : MonoBehaviour
     {
         StopCoroutine(PatienceTimer());
         alienController.UnspawnAlien();
+
+        StartCoroutine(CallNextCustomerAfterDelay());
     }
 
     private float CalculateScore()
     {
         float newScore = score + (currentStars / amountOfCustomers);
         return newScore;
+    }
+
+    private IEnumerator CallNextCustomerAfterDelay()
+    {
+        if (currentAlien < amountOfCustomers)
+        {
+            yield return new WaitForSeconds(delayBetweenCustomers);
+            alienController.SpawnAlien();
+            StartCoroutine (PatienceTimer());
+
+            currentAlien++;
+        }
     }
 
     private IEnumerator PatienceTimer()
@@ -66,5 +84,7 @@ public class GameHandler : MonoBehaviour
         currentStars = 0f;
         AddToScore();
         alienController.UnspawnAlien();
+
+        StartCoroutine(CallNextCustomerAfterDelay());
     }
 }

@@ -16,7 +16,13 @@ public class OrderController : MonoBehaviour
     [SerializeField] List<string> flavour2Lines = new List<string>();
     [SerializeField] List<string> flavour3Lines = new List<string>();
 
-    private int currentFlavour = 1;
+
+    [Header("Flavour Sprites")]
+    [SerializeField] Transform flavourPaper1;
+    [SerializeField] Transform flavourPaper2;
+    [SerializeField] Transform flavourPaper3;
+
+    public int currentFlavour = 1;
     private string currentVoiceLine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,12 +39,15 @@ public class OrderController : MonoBehaviour
         {
             case 1:
                 currentVoiceLine = flavour1Lines[Random.Range(0, flavour1Lines.Count)];
+                flavourPaper1.gameObject.SetActive(true);
                 break;
             case 2:
                 currentVoiceLine = flavour2Lines[Random.Range(0, flavour1Lines.Count)];
+                flavourPaper2.gameObject.SetActive(true);
                 break;
             case 3:
                 currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count)];
+                flavourPaper3.gameObject.SetActive(true);
                 break;
         }
         StartTextBubble();
@@ -53,5 +62,8 @@ public class OrderController : MonoBehaviour
     public void CloseBubble()
     {
         textBubble.gameObject.SetActive(false);
+        flavourPaper1.gameObject.SetActive(false);
+        flavourPaper2.gameObject.SetActive(false);
+        flavourPaper3.gameObject.SetActive(false);
     }
 }
