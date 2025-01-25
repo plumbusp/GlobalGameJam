@@ -14,18 +14,38 @@ public class Counter : MonoBehaviour
     {
         if (other.CompareTag("GlassBottom"))
         {
-            // Check if allowed
-            if (!_cup.Follow)
-                return;
+            _cursor.OnCupUnsnaped += HandleCupDelivered;
+            //Check if allowed
+            //if (!_cup.Follow)
+            //        return;
 
             //If yes set to right position
-            _cup.Delivered = true;
-            _cup.Follow = false;
-            _cup.SetPosition(_orderTakePoint);
+            //_cup.Delivered = true;
+            //_cup.Follow = false;
+            //_cup.SetPosition(_orderTakePoint);
 
-            // Count
-            Debug.Log(_cup.CountFluid());
-            // Give results
+            //Count
+            //Debug.Log(_cup.CountFluid());
+            //Give results
         }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("GlassBottom"))
+        {
+            _cursor.OnCupUnsnaped -= HandleCupDelivered;
+        }
+    }
+    private void OnDestroy()
+    {
+        _cursor.OnCupUnsnaped -= HandleCupDelivered;
+    }
+
+    private void HandleCupDelivered()
+    {
+        // count staff
+        Debug.Log(_cup.CountFluid());
+        _cup.Delivered = true;
+        //Set cup to false
     }
 }

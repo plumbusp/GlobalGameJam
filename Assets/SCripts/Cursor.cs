@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Cursor : MonoBehaviour
 {
-    public event Action CupUnsnaped;
+    public event Action OnCupUnsnaped;
     [SerializeField] private Cup _cup;
     private InputActions _actions;
 
@@ -15,7 +15,12 @@ public class Cursor : MonoBehaviour
         _actions.Player.Click.started += SnapCup;
         _actions.Player.Click.canceled += UnsnapCup;
     }
-
+    private void OnDestroy()
+    {
+        _actions.Player.Disable();
+        _actions.Player.Click.started -= SnapCup;
+        _actions.Player.Click.canceled -= UnsnapCup;
+    }
     private void SnapCup(InputAction.CallbackContext context)
     {
         _cup.Follow = true;
@@ -24,6 +29,6 @@ public class Cursor : MonoBehaviour
     private void UnsnapCup(InputAction.CallbackContext context)
     {
         _cup.Follow = false;
-        CupUnsnaped?.Invoke();
+        OnCupUnsnaped?.Invoke();
     }
 }

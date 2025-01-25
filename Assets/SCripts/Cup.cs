@@ -44,7 +44,7 @@ public class Cup : MonoBehaviour
         set
         {
             _delivered = value;
-            _rb1.simulated = false;
+            gameObject.SetActive(false);
         }
     }
 
@@ -56,7 +56,13 @@ public class Cup : MonoBehaviour
 
     public int CountFluid()
     {
-        var colliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, LayerMask.NameToLayer("Liquids"));
+        Debug.Log(LayerMask.LayerToName(6));
+        int layerMask = LayerMask.GetMask("Liquids");
+        var colliders = Physics2D.OverlapAreaAll(_pointA.position, _pointB.position, layerMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].gameObject.SetActive(false);
+        }
         return colliders.Length;
     }
 
@@ -64,7 +70,6 @@ public class Cup : MonoBehaviour
     {
         _delivered = false;
         _follow = false;
-        _rb1.simulated = true;
     }
     public void SetPosition(Transform point)
     {
@@ -81,10 +86,6 @@ public class Cup : MonoBehaviour
 
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         _newPosition = Vector3.SmoothDamp(_rb1.transform.position, _mouseWorldPosition, ref _refMoveVelocity, _MoveSeconds * Time.deltaTime);
-        //if(Vector2.Distance(_newPosition, _mouseWorldPosition) <= 0.2f)
-        //{
-        //    _newPosition = _mouseWorldPosition;
-        //}
 
         float currentRotation = _rb1.rotation;
         if (Mathf.Abs(Mathf.DeltaAngle(currentRotation, _initialRotation)) > 0.1f)
@@ -102,6 +103,23 @@ public class Cup : MonoBehaviour
         _rb1.MoveRotation(_newRotation);
         //_rb1.angularVelocity = Mathf.Clamp(_rb1.angularVelocity,0, 10f);
         //_rb1.totalForce
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector2 bottomLeft = _pointA.position;
+        Vector2 topRight = _pointB.position;
+
+        // Calculate the other corners of the rectangle
+        Vector2 topLeft = new Vector2(bottomLeft.x, topRight.y);
+        Vector2 bottomRight = new Vector2(topRight.x, bottomLeft.y);
+
+        // Draw the rectangle with Gizmos
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
     }
 }
 
