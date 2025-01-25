@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1476451813
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3660795116147141622, guid: 223c474db36751547ab8426efebf26f2, type: 3}
+  m_Sprite: {fileID: 6536614320315169941, guid: 0b2849e61bf5b0b43b1a222ba8b8e0ff, type: 3}
   m_Color: {r: 0.5696071, g: 0.8962264, b: 0.2494215, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,8 +124,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.3
+  m_Offset: {x: 0.003065765, y: 0}
+  m_Radius: 0.7
 --- !u!50 &52527380731883542
 Rigidbody2D:
   serializedVersion: 5
@@ -138,10 +138,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.01
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_AngularDamping: 20
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 414cb70dbe11d4b439d048e2d127b068, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ab18b900174c2429285c84a91b3188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topSpeed: 15

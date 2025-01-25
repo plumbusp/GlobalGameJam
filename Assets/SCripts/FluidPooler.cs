@@ -58,6 +58,7 @@ public class FluidPooler : MonoBehaviour
 
         currentQueue = poolDictionary[tag];
         pooledObject = currentQueue.Dequeue();
+        pooledObject.Initialize();
         pooledObject.gameObject.SetActive(true);
         currentQueue.Enqueue(pooledObject);
         return pooledObject;
