@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent (typeof(SpriteRenderer))]
 public class FossitButton : MonoBehaviour
 {
+    [Header("Fossit")]
+    [SerializeField] Fossit _correspondingFossit;
+
+    [Header("Visual Parameters")] 
     private SpriteRenderer _spriteRenderer;
     [SerializeField] float _pressedTime;
     private WaitForSeconds _pressedSeconds;
@@ -23,9 +27,18 @@ public class FossitButton : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if(_currentCoroutine != null) 
-            StopAllCoroutines();
-        _currentCoroutine = StartCoroutine(PressButton());
+        if(!_correspondingFossit.IsOpen)
+        {
+            _correspondingFossit.Open();
+        }
+        else
+        {
+            _correspondingFossit.Close();
+            if (_currentCoroutine != null)
+                StopAllCoroutines();
+            _currentCoroutine = StartCoroutine(PressButton());
+        }
+        
     }
     private IEnumerator PressButton()
     {

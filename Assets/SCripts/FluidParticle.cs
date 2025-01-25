@@ -1,16 +1,21 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class FluidParticle : MonoBehaviour
 {
     [SerializeField] private float topSpeed;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private bool _isInitialized = false;
     public int ID {  get; set; }
+    public Color Color { get; set; }
 
     public void Initialize()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         _isInitialized = true;
+        spriteRenderer.color = Color;
     }
     public void SetFall(Vector3 fallPos) 
     { 
