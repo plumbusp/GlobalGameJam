@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2819008872381719381}
   - component: {fileID: 619499354154513682}
   - component: {fileID: 52527380731883542}
+  - component: {fileID: 200678156964790618}
   m_Layer: 6
-  m_Name: Water_particle
+  m_Name: Fluid_particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,3 +153,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &200678156964790618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742896490986019582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ab18b900174c2429285c84a91b3188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

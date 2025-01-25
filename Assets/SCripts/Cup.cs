@@ -3,9 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Cup : MonoBehaviour
 {
-    [SerializeField] private float _MoveSpeed;
+    [SerializeField] private float _MoveSeconds;
     [SerializeField] private Rigidbody2D _rb1;
-    [SerializeField] private Rigidbody2D _rb2;
     private Vector3 _mouseWorldPosition;
     private Vector3 _newPosition;
     private Vector3 _refMoveVelocity;
@@ -43,7 +42,7 @@ public class Cup : MonoBehaviour
 
         Debug.Log("Following");
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _newPosition = Vector3.SmoothDamp(_rb1.transform.position, _mouseWorldPosition, ref _refMoveVelocity, _MoveSpeed * Time.deltaTime);
+        _newPosition = Vector3.SmoothDamp(_rb1.transform.position, _mouseWorldPosition, ref _refMoveVelocity, _MoveSeconds * Time.deltaTime);
         //if(Vector2.Distance(_newPosition, _mouseWorldPosition) <= 0.2f)
         //{
         //    _newPosition = _mouseWorldPosition;
