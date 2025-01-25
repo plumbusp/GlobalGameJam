@@ -1,13 +1,12 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 [System.Serializable]
 public class PoolSettings
 {
     public string tag;
-    public FluidParticle prefab;
     public int poolSize;
+    public int fluidID;
 }
 
 public class FluidPooler : MonoBehaviour
@@ -15,6 +14,8 @@ public class FluidPooler : MonoBehaviour
     public static FluidPooler Instance;
 
     public List<PoolSettings> pools;
+    public FluidParticle prefabForFluidParticle;
+
     private Dictionary<string, Queue<FluidParticle>> poolDictionary = new Dictionary<string, Queue<FluidParticle>>();
 
     private FluidParticle pooledObject; // To avoid creation of a new object each time GetPoolObject() is called
@@ -22,21 +23,29 @@ public class FluidPooler : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         foreach (PoolSettings settings in pools)
         {
             Queue<FluidParticle> pool = new Queue<FluidParticle>();
 
             for (int i = 0; i < settings.poolSize; i++)
             {
-				FluidParticle obj = Instantiate(settings.prefab);
+                FluidParticle obj = Instantiate(prefabForFluidParticle, transform);
+                obj.ID = settings.fluidID;
                 obj.gameObject.SetActive(false);
                 pool.Enqueue(obj);
             }
 
             poolDictionary.Add(settings.tag, pool);
         }
-
-        Instance = this;
     }
 
     public FluidParticle GetPoolObject(string tag)
@@ -53,4 +62,5 @@ public class FluidPooler : MonoBehaviour
         currentQueue.Enqueue(pooledObject);
         return pooledObject;
     }
+
 }
