@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FluidParticle : MonoBehaviour
 {
+    public int ID;
     public void SetFall(Vector3 fallPos) 
     { 
         transform.position = fallPos;

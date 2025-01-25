@@ -705,7 +705,6 @@ GameObject:
   m_Component:
   - component: {fileID: 493265486}
   - component: {fileID: 493265485}
-  - component: {fileID: 493265484}
   - component: {fileID: 493265483}
   m_Layer: 0
   m_Name: Water Camera
@@ -758,14 +757,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &493265484
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493265482}
-  m_Enabled: 1
 --- !u!20 &493265485
 Camera:
   m_ObjectHideFlags: 0
@@ -862,9 +853,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Fluid
-    prefab: {fileID: 4742896490986019582, guid: d812d218db7eb624fb7b09ef4e19a2f2, type: 3}
-    poolSize: 1000
+  - tag: Fluid1
+    poolSize: 300
+    fluidID: 1
+  - tag: Fluid2
+    poolSize: 300
+    fluidID: 2
+  prefabForFluidParticle: {fileID: 200678156964790618, guid: d812d218db7eb624fb7b09ef4e19a2f2, type: 3}
 --- !u!4 &515125315
 Transform:
   m_ObjectHideFlags: 0
@@ -1289,6 +1284,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1231056221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231056223}
+  - component: {fileID: 1231056222}
+  m_Layer: 0
+  m_Name: Drain
+  m_TagString: FluidDestroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1231056222
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231056221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.5645838, y: -4.461958}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 31.480387, y: 9.923916}
+  m_EdgeRadius: 0
+--- !u!4 &1231056223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231056221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.6, y: -15.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327192259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1997622094}
+  - component: {fileID: 1997622095}
   m_Layer: 0
   m_Name: WaterFossit
   m_TagString: Untagged
@@ -1693,12 +1767,27 @@ Transform:
   m_GameObject: {fileID: 1997622093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.120552, y: 9.94495, z: -0.20415263}
+  m_LocalPosition: {x: 23.2, y: 10.9, z: -0.20415263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997622095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997622093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413c44397745c2f4a99cac7a1cc5f9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPooler: {fileID: 515125314}
+  _particlesSpawnPosition: {fileID: 1997622094}
+  _spawnDelay: 0.05
 --- !u!1 &2018749146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,3 +2056,4 @@ SceneRoots:
   - {fileID: 169088056}
   - {fileID: 515125315}
   - {fileID: 1997622094}
+  - {fileID: 1231056223}
