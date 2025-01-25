@@ -16,6 +16,7 @@ public class FluidPooler : MonoBehaviour
 
     public List<PoolSettings> pools;
     public FluidParticle prefabForFluidParticle;
+    public FluidParticle bobaPrefab;
 
     private Dictionary<string, Queue<FluidParticle>> poolDictionary = new Dictionary<string, Queue<FluidParticle>>();
 
@@ -36,6 +37,18 @@ public class FluidPooler : MonoBehaviour
         foreach (PoolSettings settings in pools)
         {
             Queue<FluidParticle> pool = new Queue<FluidParticle>();
+
+            if(settings.tag == "Boba")
+            {
+                for (int i = 0; i < settings.poolSize; i++)
+                {
+                    FluidParticle obj = Instantiate(bobaPrefab, transform);
+                    obj.ID = settings.fluidID;
+                    obj.Color = settings.Color;
+                    obj.gameObject.SetActive(false);
+                    pool.Enqueue(obj);
+                }
+            }
 
             for (int i = 0; i < settings.poolSize; i++)
             {
