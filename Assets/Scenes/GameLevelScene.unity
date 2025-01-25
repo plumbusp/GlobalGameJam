@@ -119,6 +119,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &112945814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5463808809460857647, guid: 3c0d37c5afd6a144e857a8efa662cba2, type: 3}
+  m_PrefabInstance: {fileID: 774151359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &154316768 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5491071214722377146, guid: 3c0d37c5afd6a144e857a8efa662cba2, type: 3}
+  m_PrefabInstance: {fileID: 774151359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &171546962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,9 +1577,9 @@ MonoBehaviour:
   - Could I get a stinky human flavoured bubble tea? Extra stink
   flavour3Lines:
   - Just a blueberry bubble tea, please
-  flavourPaper1: {fileID: 0}
-  flavourPaper2: {fileID: 0}
-  flavourPaper3: {fileID: 0}
+  flavourPaper1: {fileID: 112945814}
+  flavourPaper2: {fileID: 1584398975}
+  flavourPaper3: {fileID: 154316768}
   currentFlavour: 1
 --- !u!4 &964875956
 Transform:
@@ -2359,6 +2369,11 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!4 &1584398975 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4502300826187306089, guid: 3c0d37c5afd6a144e857a8efa662cba2, type: 3}
+  m_PrefabInstance: {fileID: 774151359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659341848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2556,7 @@ GameObject:
   m_Layer: 0
   m_Name: AliensParent
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2554,7 +2569,7 @@ Transform:
   m_GameObject: {fileID: 1781889560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9597437, y: -4.5330257, z: -0.08088143}
+  m_LocalPosition: {x: -10.62, y: -1.84, z: -0.08088143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
