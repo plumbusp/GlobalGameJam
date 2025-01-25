@@ -30,7 +30,14 @@ public class Cup : MonoBehaviour
         set
         {
             _follow = value;
-            _rb1.gravityScale = -1 * _rb1.gravityScale;
+            if(_follow == true)
+            {
+                _rb1.gravityScale = -Mathf.Abs(_rb1.gravityScale);
+            }
+            else
+            {
+                _rb1.gravityScale = Mathf.Abs(_rb1.gravityScale);
+            }
         }
     }
 
