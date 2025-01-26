@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.instance.PlayAudio(MusicType.CosmicGameMusic);
         _Contents[_index].Show();
     }
 

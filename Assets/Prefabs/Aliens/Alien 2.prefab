@@ -72,7 +72,7 @@ MonoBehaviour:
   satisfactionHappy: {fileID: 935406257131951997, guid: d8d735f717ac43144978d2a0fd427297, type: 3}
   satisfactionMeh: {fileID: -4554203470261791860, guid: 60d65f6e09375e84d8ceeb2954d52708, type: 3}
   satisfactionAngry: {fileID: -3166859983922005315, guid: 8ec28b82a2384b142a45903aa42455c1, type: 3}
-  speachSound: 0
+  speachSound: 10
 --- !u!1 &3377398693046669290
 GameObject:
   m_ObjectHideFlags: 0
