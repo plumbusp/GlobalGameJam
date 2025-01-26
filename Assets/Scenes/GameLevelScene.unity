@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &333543425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -695,10 +695,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 316189913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -791.02, y: 52.7}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0.46944696}
+  m_AnchorMax: {x: 0.13560417, y: 0.684596}
+  m_AnchoredPosition: {x: -1, y: 3}
+  m_SizeDelta: {x: -110, y: -82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333543426
 MonoBehaviour:
@@ -1529,13 +1529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1712115bdc512984082fd340cfcbdab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfCustomers: 8
-  delayBetweenCustomers: 2.5
-  customerPatienceAmount: 9
-  satisfactionIndicator: {fileID: 333543426}
-  satisfactionHappy: {fileID: 935406257131951997, guid: d8d735f717ac43144978d2a0fd427297, type: 3}
-  satisfactionMeh: {fileID: -4554203470261791860, guid: 60d65f6e09375e84d8ceeb2954d52708, type: 3}
-  satisfactionAngry: {fileID: -3166859983922005315, guid: 8ec28b82a2384b142a45903aa42455c1, type: 3}
+  counter: {fileID: 825971957}
+  cup: {fileID: 1010723214}
 --- !u!114 &964875954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,14 +1543,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7437c7abd687cbd40b9b686f24bcc8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aliens:
+  satisfactionIndicator: {fileID: 333543426}
+  gameObjectAliens:
   - {fileID: 2655769678490118605, guid: 3ad5a5508d741a644834fb722eec2fe2, type: 3}
   - {fileID: 2655769678490118605, guid: 1bd8352530a9e794b90691631dd5fa18, type: 3}
   - {fileID: 2655769678490118605, guid: 33626bcb56448d64a971dd0cd8c8bec0, type: 3}
   - {fileID: 2655769678490118605, guid: f9c218e19a4583443b5ba3a303e6044e, type: 3}
   aliensParent: {fileID: 1781889561}
-  startDialogDelay: 0.4
-  orderController: {fileID: 964875955}
+  patienceAmount: 15
 --- !u!114 &964875955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,6 +1563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f335a6190cff5804fbd6f4a9994a20d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goodParticleAmount: 25
+  _goodBobaAmount: 5
   textController: {fileID: 820496987}
   textBubble: {fileID: 820496986}
   text: {fileID: 171546964}
@@ -1577,6 +1574,9 @@ MonoBehaviour:
   - Could I get a stinky human flavoured bubble tea? Extra stink
   flavour3Lines:
   - Just a blueberry bubble tea, please
+  tooLittleLiquidLine: Aren't you being too generous? LOL
+  tooLittleBobaLine: That's all the bubbles you can give?
+  differentFlavourLine: I didn't ask for this!
   flavourPaper1: {fileID: 112945814}
   flavourPaper2: {fileID: 1584398975}
   flavourPaper3: {fileID: 154316768}
@@ -1726,6 +1726,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6727153036770142837, guid: 47f425c5ca6ccb744b14d5be2ff33818, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1045576496}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1742,6 +1746,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc325ddf72b69740b486683445c326d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1045576495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045576496}
+  m_Layer: 0
+  m_Name: Cup respawn point
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045576496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045576495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.82, y: -2.81, z: -10.005339}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051409249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,3 +2870,4 @@ SceneRoots:
   - {fileID: 420576732}
   - {fileID: 938502817}
   - {fileID: 1781889561}
+  - {fileID: 1045576496}

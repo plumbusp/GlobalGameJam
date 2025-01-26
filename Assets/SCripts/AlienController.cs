@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class AlienController : MonoBehaviour
 {
     [SerializeField] Image satisfactionIndicator;
-    [SerializeField] List<Alien> aliens = new List<Alien>();
+    [SerializeField] List<GameObject> gameObjectAliens = new List<GameObject>();
+    List<Alien> aliens = new List<Alien>();
     [SerializeField] Transform aliensParent;
     [SerializeField] float patienceAmount = 15f;
     //[SerializeField] float startDialogDelay = 0.4f;
@@ -19,12 +20,16 @@ public class AlienController : MonoBehaviour
     {
         _counter = counter;
         _orderController = orderController;
+        foreach (GameObject gm in gameObjectAliens)
+        {
+            aliens.Add(gm.GetComponent<Alien>());
+        }
     }
 
     public Alien SpawnAlien()
     {
         currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)], aliensParent);
-        currentAlien.Initialize(_counter, _orderController, satisfactionIndicator, patienceAmount);
+        currentAlien.Initialize(_counter, _orderController.CreateRandomOrder(), satisfactionIndicator, patienceAmount);
         return currentAlien;
         //StartCoroutine(StartDialogAfterDelay());
     }

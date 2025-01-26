@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    public event Action<int> OnOrderSubmitted;
+    public event Action OnOrderSubmitted;
     [SerializeField] private Cup _cup;
     [SerializeField] private Cursor _cursor;
 
@@ -26,18 +26,18 @@ public class Counter : MonoBehaviour
         _cursor.OnCupUnsnaped -= HandleCupDelivered;
     }
 
-    private void HandleCupDelivered()
+    public void HandleCupDelivered()
     {
         OnOrderSubmitted?.Invoke();
-        _cursor.OnCupUnsnaped -= HandleCupDelivered;
-        // count staff
-        int i;
-        int y;
-        int x;
-        int z;
-        _cup.CountContents(out i,out y, out x, out z);
-        Debug.Log($" {i} {y}  {x}  {z}");
-        _cup.Delivered = true;
-        //Set cup to false
+        //_cursor.OnCupUnsnaped -= HandleCupDelivered;
+        //// count staff
+        //int i;
+        //int y;
+        //int x;
+        //int z;
+        //_cup.CountContents(out i,out y, out x, out z);
+        //Debug.Log($" {i} {y}  {x}  {z}");
+        //_cup.Delivered = true;
+        ////Set cup to false
     }
 }

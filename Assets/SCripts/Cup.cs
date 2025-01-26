@@ -8,6 +8,7 @@ public class Cup : MonoBehaviour
     [SerializeField] Transform _pointB;
 
     [Header("Movement")]
+    [SerializeField] private Transform _respawnPoint;
     [SerializeField] private float _MoveSeconds;
     [SerializeField] private Rigidbody2D _rb1;
     private Vector3 _mouseWorldPosition;
@@ -51,7 +52,10 @@ public class Cup : MonoBehaviour
         set
         {
             _delivered = value;
-            gameObject.SetActive(false);
+            if (value == true)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -61,11 +65,18 @@ public class Cup : MonoBehaviour
         _initialRotation = _rb1.rotation;
     }
 
+    public void Respawn()
+    {
+        ResetCup();
+        gameObject.SetActive(true);
+        SetPosition(_respawnPoint);
+    }
+
     /// <summary>
     /// Returns count of liquid particles
     /// </summary>
     /// <returns></returns>
-    public void CountContents(out int particlesAmount, out int liquidsUsed, out int primarLiquidID, out int bobaCount)
+    public void CountContents(out float particlesAmount, out float liquidsUsed, out float primarLiquidID, out float bobaCount)
     {
         int id_1_particles = 0;
         int id_2_particles = 0;
@@ -111,7 +122,7 @@ public class Cup : MonoBehaviour
 
     }
 
-    public void ResetCup()
+    private void ResetCup()
     {
         _delivered = false;
         _follow = false;

@@ -1,10 +1,19 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.SocialPlatforms.Impl;
+using System;
+using System.Collections;
 
 public class OrderController : MonoBehaviour
 {
+    public event Action CanMove;
+
+    [Header("Order Settings")]
+    [SerializeField] int _goodParticleAmount;
+    [SerializeField] int _goodBobaAmount;
+
+
+
     [Header("References")]
     [SerializeField] TextController textController;
 
@@ -16,6 +25,13 @@ public class OrderController : MonoBehaviour
     [SerializeField] List<string> flavour1Lines = new List<string>();
     [SerializeField] List<string> flavour2Lines = new List<string>();
     [SerializeField] List<string> flavour3Lines = new List<string>();
+
+    [Header("Too little Liquid Line")]
+    [SerializeField] private string tooLittleLiquidLine;
+    [Header("Too little boba line")]
+    [SerializeField] private string tooLittleBobaLine;
+    [Header("Different Flavour Line")]
+    [SerializeField] private string differentFlavourLine;
 
 
     [Header("Flavour Sprites")]
@@ -40,31 +56,31 @@ public class OrderController : MonoBehaviour
     /// Creates an order and returns correcponding flavour ID
     /// </summary>
     /// <returns></returns>
-    public void CreateRandomOrder(out int flavourID)
+    public int CreateRandomOrder()
     {
         currentAlien++;
         Debug.Log(" Current Alien + " + currentAlien);
-        currentFlavour = Random.Range(1, 4);
-        flavourID = currentFlavour;
+        currentFlavour = UnityEngine.Random.Range(1, 4);
 
         switch (currentFlavour)
         {
             case 1:
-                currentVoiceLine = flavour1Lines[Random.Range(0, flavour1Lines.Count)];
+                currentVoiceLine = flavour1Lines[UnityEngine.Random.Range(0, flavour1Lines.Count)];
                 flavourPaper1.gameObject.SetActive(true);
                 break;
             case 2:
-                currentVoiceLine = flavour2Lines[Random.Range(0, flavour1Lines.Count)];
+                currentVoiceLine = flavour2Lines[UnityEngine.Random.Range(0, flavour1Lines.Count)];
                 flavourPaper2.gameObject.SetActive(true);
                 break;
             case 3:
-                currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count)];
+                currentVoiceLine = flavour3Lines[UnityEngine.Random.Range(0, flavour1Lines.Count)];
                 flavourPaper3.gameObject.SetActive(true);
                 break;
             default:
                 Debug.LogWarning("You are not suppoused to be here!!!");
                 break;
         }
+        return currentFlavour;
     }
 
     public void StartTextBubble()
@@ -81,9 +97,53 @@ public class OrderController : MonoBehaviour
         flavourPaper3.gameObject.SetActive(false);
     }
 
-    public void AddToScore(int currentStars)
+    public void CalculateCurrentScore(Alien alien, Cup cup)
     {
+        float particleAmount;
+        float liquidsUsed;
+        float primaryLiquidID;
+        float bobaCount;
+        float currentStars = alien.CurrentStars;
+
+        textController.OnSentenceEnded += InVokeCanMove;
+        cup.CountContents(out particleAmount,out liquidsUsed,out primaryLiquidID,out bobaCount);
+        if (particleAmount < _goodParticleAmount)
+        {
+            currentStars -= 0.3f;
+            textController.StartDialog(tooLittleLiquidLine);
+            //if (liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
+            //{
+            //    currentStars -= 0.3f;
+            //    if (bobaCount < _goodBobaAmount)
+            //    {
+            //        currentStars -= 0.3f;
+            //    }
+            //}
+        }
+        else if(liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
+        {
+            currentStars -= 0.7f;
+            textController.StartDialog(differentFlavourLine);
+        }
+        else if(bobaCount < _goodBobaAmount)
+        {
+            currentStars -= 0.3f;
+            textController.StartDialog(differentFlavourLine);
+        }
+
         float newTotalScore = totalScore + (currentStars / currentAlien);
         Debug.Log(newTotalScore);
+    }
+
+    private void InVokeCanMove()
+    {
+        StartCoroutine(WaitAlittleBit());
+    }
+
+    private IEnumerator WaitAlittleBit()
+    {
+        yield return new WaitForSeconds(2f);
+        CanMove?.Invoke();
+        textController.OnSentenceEnded -= InVokeCanMove;
     }
 }
