@@ -2696,7 +2696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: SFXObjects.Array.size
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: musicObjects.Array.size
@@ -2726,6 +2726,22 @@ PrefabInstance:
       propertyPath: SFXObjects.Array.data[7].<clip>k__BackingField
       value: 
       objectReference: {fileID: 8300000, guid: 6a44c03db45751b4eaaf821f603c5219, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[8].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: e9993a7c09ab434469e7d6c117a6e382, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[9].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: 41281480604ef5d47a64e0aa413ff1d1, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[10].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d9301fa881af594bb93d7fbb50bc933, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[11].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a2d86960f5281047a5c2785c41997ae, type: 3}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: musicObjects.Array.data[0].<clip>k__BackingField
       value: 
@@ -2777,6 +2793,22 @@ PrefabInstance:
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: SFXObjects.Array.data[7].<sfxType>k__BackingField
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[8].<sfxType>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[9].<sfxType>k__BackingField
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[10].<sfxType>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: SFXObjects.Array.data[11].<sfxType>k__BackingField
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: musicObjects.Array.data[1].<musicType>k__BackingField

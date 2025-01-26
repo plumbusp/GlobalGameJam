@@ -11,5 +11,9 @@ public enum SFXType
     RetroWinSound,
     RetroTakeDamageSound,
     SwooshSound,
-    HitSound
+    HitSound,
+    AlienVoice1,
+    AlienVoice2,
+    AlienVoice3,
+    AlienVoice4
 }
