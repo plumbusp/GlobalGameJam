@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class EndGameController : MonoBehaviour
 {
+    [SerializeField] GameObject _dayTimeObject;
+    [SerializeField] GameObject _inGameStarsObject;
+
     [SerializeField] Slider timeSlider;
     [SerializeField] private Image fillImage;
     [SerializeField] private Color sunColor;
@@ -21,6 +24,8 @@ public class EndGameController : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     private float _currentscore;
 
+    bool gameEnded = false;
+
     private void Start()
     {
         waitUntilEnd = new WaitForSeconds(timeUntilGameEndSec);
@@ -36,6 +41,14 @@ public class EndGameController : MonoBehaviour
     }
     void Update()
     {
+        if (gameEnded)
+        {
+            if (Input.anyKey)
+            {
+                SceneManager.LoadScene(0);
+            }
+            return;
+        }
         currentTime += Time.deltaTime;
         t_forLerp = currentTime / timeUntilGameEndSec;
         timeSlider.value = Mathf.Lerp(0, 1, t_forLerp) * timeUntilGameEndSec;
@@ -55,9 +68,14 @@ public class EndGameController : MonoBehaviour
     IEnumerator WaitUntilTheEnd()
     {
         yield return waitUntilEnd;
+
+        AudioManager.instance.StopAudioOver();
         ShowScoreAsStars();
         endGamePanel.SetActive(true);
         pauseMenu.SetActive(false);
+        _dayTimeObject.SetActive(false );
+        _inGameStarsObject.SetActive(false);
         Time.timeScale = 0f;
+        gameEnded = true;
     }
 }

@@ -459,6 +459,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 316189913}
     m_Modifications:
+    - target: {fileID: 176687709129473013, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_text
+      value: 'Your Rating on "Melp" :'
+      objectReference: {fileID: 0}
+    - target: {fileID: 176687709129473013, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 176687709129473013, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1120380637455869731, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -470,6 +482,22 @@ PrefabInstance:
     - target: {fileID: 1300639364561233685, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553885147261011516, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_text
+      value: 'Your Rating on "Melp" :'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553885147261011516, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553885147261011516, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436711201849065666, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.2069092
       objectReference: {fileID: 0}
     - target: {fileID: 7703333953235988213, guid: 29c2200454fb60341ba041c8f5e649bb, type: 3}
       propertyPath: m_Pivot.x
@@ -2412,11 +2440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d263c2035d4bb4a4e8f9bb3296216372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dayTimeObject: {fileID: 1406221074}
+  _inGameStarsObject: {fileID: 712959306}
   timeSlider: {fileID: 924796671431062262}
   fillImage: {fileID: 6911871754718202308}
   sunColor: {r: 0.9921569, g: 0.9921569, b: 0.7176471, a: 1}
   moonColor: {r: 0.3529412, g: 0.454902, b: 0.5254902, a: 1}
-  timeUntilGameEndSec: 100
+  timeUntilGameEndSec: 20
   endGameStarSlider: {fileID: 1790876486}
   currentStarSlider: {fileID: 504581648}
   endGamePanel: {fileID: 1295054162}

@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private AudioSource _SFXAudioSource;
+    [SerializeField] private AudioSource _overSFXAudioSource;
     [SerializeField] private AudioMixer _audioMixer;
 
     private VolumeController _volumeController;
@@ -86,5 +87,31 @@ public class AudioManager : MonoBehaviour
                   throw new Exception(e.Message);
              }
          }
+    }
+    public void PlayAudioOver(SFXType type)
+    {
+        try
+        {
+            _overSFXAudioSource.clip = _audioClips[type.ToString()];
+            _overSFXAudioSource.Play();
+        }
+
+        catch (Exception e)
+        {
+            if (!_audioClips.ContainsKey(type.ToString()))
+            {
+                Debug.LogWarning("There is no value with " + type.ToString() + " key " + " in " + _audioClips);
+            }
+            else
+            {
+                throw new Exception(e.Message);
+            }
+        }
+    }
+
+    public void StopAudioOver()
+    {
+        if(_overSFXAudioSource.isPlaying)
+            _overSFXAudioSource.Stop();
     }
 }

@@ -44,6 +44,7 @@ public class Alien : MonoBehaviour
         if(_currentCoroutine != null)
             StopAllCoroutines();
 
+        AudioManager.instance.PlayAudioOver(speachSound);
         _currentCoroutine = StartCoroutine(PatienceTimer());
     }
 
@@ -55,6 +56,7 @@ public class Alien : MonoBehaviour
 
     public void Leave()
     {
+        AudioManager.instance.StopAudioOver();
         _animator.SetTrigger("Exit");
         _satisfactionIndicator.gameObject.SetActive(false);
     }
@@ -86,6 +88,7 @@ public class Alien : MonoBehaviour
         CurrentStars = 0;
 
         _satisfactionIndicator.gameObject.SetActive(false);
+        AudioManager.instance.StopAudioOver();
         _animator.SetTrigger("Exit");
         CanGetDrink = false;
         OnLeavedWithNoOrder?.Invoke();
