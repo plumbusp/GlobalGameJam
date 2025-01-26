@@ -130,19 +130,17 @@ public class OrderController : MonoBehaviour
             currentStars -= 0.3f;
             textController.StartDialog(differentFlavourLine);
         }
+        else
+        {
+            textController.StartDialog("Thank you!");
+        }
 
         float newTotalScore = totalScore + (currentStars / currentAlien);
-        Debug.Log(newTotalScore);
+        Debug.Log("TOTAL SCORE" + newTotalScore);
     }
 
     private void InVokeCanMove()
     {
-        StartCoroutine(WaitAlittleBit());
-    }
-
-    private IEnumerator WaitAlittleBit()
-    {
-        yield return new WaitForSeconds(2f);
         CanMove?.Invoke();
         textController.OnSentenceEnded -= InVokeCanMove;
     }

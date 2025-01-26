@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &333543425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -781,7 +781,7 @@ MonoBehaviour:
     fluidID: 3
     Color: {r: 0.48235297, g: 0.427451, b: 0.77647066, a: 1}
   - tag: Boba
-    poolSize: 300
+    poolSize: 1000
     fluidID: 4
     Color: {r: 0.29803923, g: 0.18431373, b: 0.14117648, a: 1}
   prefabForFluidParticle: {fileID: 200678156964790618, guid: d812d218db7eb624fb7b09ef4e19a2f2, type: 3}
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   - {fileID: 2655769678490118605, guid: 33626bcb56448d64a971dd0cd8c8bec0, type: 3}
   - {fileID: 2655769678490118605, guid: f9c218e19a4583443b5ba3a303e6044e, type: 3}
   aliensParent: {fileID: 1781889561}
-  patienceAmount: 20
+  patienceAmount: 30
 --- !u!114 &964875955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f335a6190cff5804fbd6f4a9994a20d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goodParticleAmount: 25
+  _goodParticleAmount: 10
   _goodBobaAmount: 5
   textController: {fileID: 820496987}
   textBubble: {fileID: 820496986}
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   - Could I get a stinky human flavoured bubble tea? Extra stink
   flavour3Lines:
   - Just a blueberry bubble tea, please
-  tooLittleLiquidLine: Aren't you being too generous? LOL
+  tooLittleLiquidLine: Being quite stingy I see...
   tooLittleBobaLine: That's all the bubbles you can give?
   differentFlavourLine: I didn't ask for this!
   flavourPaper1: {fileID: 112945814}

@@ -46,8 +46,8 @@ public class GameHandler : MonoBehaviour
     private void SpawnNewCustomer()
     {
         cup.Respawn();
-        if (_currentAlien != null)
-            _currentAlien.OnLeavedWithNoOrder -= HandleCustomerLeaved;
+        if (_currentAlien != null) { _currentAlien.OnLeavedWithNoOrder -= HandleCustomerLeaved; _currentAlien.gameObject.SetActive(false); }
+            
         _currentAlien = alienController.SpawnAlien();
 
         _currentAlien.OnLeavedWithNoOrder += HandleCustomerLeaved;
@@ -60,6 +60,7 @@ public class GameHandler : MonoBehaviour
 
     private void HandleOrderSubmitted()
     {
+        Debug.Log("HandleOrderSubmitted ");
         if(_currentAlien.CanGetDrink)
         {
             cup.Delivered = true;
@@ -73,10 +74,15 @@ public class GameHandler : MonoBehaviour
     {
         orderController.CloseBubble();
         orderController.CanMove -= AllowCustomerToLeave;
+        StartCoroutine(WaitALittleBit());
         _currentAlien.Leave();
-        SpawnNewCustomer();
     }
 
+    IEnumerator WaitALittleBit()
+    {
+        yield return new WaitForSeconds(2f);
+        SpawnNewCustomer();
+    }
     //private void StartGame()
     //{
     //    StartCoroutine(CallNextCustomerAfterDelay());

@@ -56,6 +56,7 @@ public class Alien : MonoBehaviour
     public void Leave()
     {
         _animator.SetTrigger("Exit");
+        _satisfactionIndicator.gameObject.SetActive(false);
     }
 
     private IEnumerator PatienceTimer()
@@ -71,6 +72,7 @@ public class Alien : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         Debug.Log("patience at 2 stars");
+        _satisfactionIndicator.gameObject.SetActive(true);
         _satisfactionIndicator.sprite = satisfactionMeh;
         CurrentStars = 2;
         yield return new WaitForSeconds(delay);
