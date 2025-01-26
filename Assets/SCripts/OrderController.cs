@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class OrderController : MonoBehaviour
 {
@@ -25,15 +26,26 @@ public class OrderController : MonoBehaviour
     public int currentFlavour = 1;
     private string currentVoiceLine;
 
+    //Score Paramters
+    private float totalScore;
+    private int currentAlien = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         textController.Initialize(text);
     }
 
-    public void RandomizeOrder()
+    /// <summary>
+    /// Creates an order and returns correcponding flavour ID
+    /// </summary>
+    /// <returns></returns>
+    public void CreateRandomOrder(out int flavourID)
     {
+        currentAlien++;
+        Debug.Log(" Current Alien + " + currentAlien);
         currentFlavour = Random.Range(1, 4);
+        flavourID = currentFlavour;
 
         switch (currentFlavour)
         {
@@ -49,8 +61,10 @@ public class OrderController : MonoBehaviour
                 currentVoiceLine = flavour3Lines[Random.Range(0, flavour1Lines.Count)];
                 flavourPaper3.gameObject.SetActive(true);
                 break;
+            default:
+                Debug.LogWarning("You are not suppoused to be here!!!");
+                break;
         }
-        StartTextBubble();
     }
 
     public void StartTextBubble()
@@ -65,5 +79,11 @@ public class OrderController : MonoBehaviour
         flavourPaper1.gameObject.SetActive(false);
         flavourPaper2.gameObject.SetActive(false);
         flavourPaper3.gameObject.SetActive(false);
+    }
+
+    public void AddToScore(int currentStars)
+    {
+        float newTotalScore = totalScore + (currentStars / currentAlien);
+        Debug.Log(newTotalScore);
     }
 }

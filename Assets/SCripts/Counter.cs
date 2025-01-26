@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
+    public event Action<int> OnOrderSubmitted;
     [SerializeField] private Cup _cup;
     [SerializeField] private Cursor _cursor;
 
@@ -26,6 +28,7 @@ public class Counter : MonoBehaviour
 
     private void HandleCupDelivered()
     {
+        OnOrderSubmitted?.Invoke();
         _cursor.OnCupUnsnaped -= HandleCupDelivered;
         // count staff
         int i;

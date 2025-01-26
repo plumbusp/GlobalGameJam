@@ -8,21 +8,21 @@ public class GameHandler : MonoBehaviour
     private AlienController alienController;
     private OrderController orderController;
 
+    [Header("References")]
+    [SerializeField] Counter counter;
+
     [Header("Game variables")]
-    [SerializeField] int amountOfCustomers = 8;
-    [SerializeField] float delayBetweenCustomers = 1f;
-    [SerializeField] float customerPatienceAmount = 15f;
+    //[SerializeField] int amountOfCustomers = 8;
+    //[SerializeField] float delayBetweenCustomers = 1f;
+
+    private Alien _currentAlien;
 
     [Header("UI elements")]
-    [SerializeField] Image satisfactionIndicator;
-    [SerializeField] Sprite satisfactionHappy;
-    [SerializeField] Sprite satisfactionMeh;
-    [SerializeField] Sprite satisfactionAngry;
 
 
-    private float score;
-    private float currentStars = 0f;
-    private int currentAlien = 0;
+    //private float score;
+    //private float currentStars = 0f;
+    //private int currentAlien = 0;
 
     private IEnumerator patienceTimer;
 
@@ -31,6 +31,8 @@ public class GameHandler : MonoBehaviour
     {
         alienController = GetComponent<AlienController>();
         orderController = GetComponent<OrderController>();
+
+        alienController.Initialize(counter, orderController);
 
         patienceTimer = PatienceTimer();
 
@@ -46,6 +48,14 @@ public class GameHandler : MonoBehaviour
         }
     }
 
+    private void SpawnNewCustomer()
+    {
+        if (_currentAlien != null)
+            _currentAlien.OnLeaved -= SpawnNewCustomer;
+
+        _currentAlien = alienController.SpawnAlien();
+        _currentAlien.OnLeaved += SpawnNewCustomer;
+    }
     private void StartGame()
     {
         StartCoroutine(CallNextCustomerAfterDelay());
