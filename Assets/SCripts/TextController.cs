@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TextController : MonoBehaviour
 {
+    public event Action OnSentenceEnded;
     [Header("Symbol spawning")]
     [SerializeField] private float _symbolsSpawnRate;
     private WaitForSeconds _waitSymbols;
@@ -45,6 +46,7 @@ public class TextController : MonoBehaviour
                 _SentanceState = State.Completed;
                 //yield return _waitSentence;
                 //OnSentenceCompleted?.Invoke(_sentenceIndex);
+                OnSentenceEnded?.Invoke();
                 break;
             }
         }

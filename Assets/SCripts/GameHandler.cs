@@ -8,21 +8,22 @@ public class GameHandler : MonoBehaviour
     private AlienController alienController;
     private OrderController orderController;
 
+    [Header("References")]
+    [SerializeField] Counter counter;
+    [SerializeField] Cup cup;
+
     [Header("Game variables")]
-    [SerializeField] int amountOfCustomers = 8;
-    [SerializeField] float delayBetweenCustomers = 1f;
-    [SerializeField] float customerPatienceAmount = 15f;
+    //[SerializeField] int amountOfCustomers = 8;
+    //[SerializeField] float delayBetweenCustomers = 1f;
+
+    private Alien _currentAlien;
 
     [Header("UI elements")]
-    [SerializeField] Image satisfactionIndicator;
-    [SerializeField] Sprite satisfactionHappy;
-    [SerializeField] Sprite satisfactionMeh;
-    [SerializeField] Sprite satisfactionAngry;
 
 
-    private float score;
+    //private float score;
     private float currentStars = 0f;
-    private int currentAlien = 0;
+    //private int currentAlien = 0;
 
     private IEnumerator patienceTimer;
 
@@ -32,87 +33,123 @@ public class GameHandler : MonoBehaviour
         alienController = GetComponent<AlienController>();
         orderController = GetComponent<OrderController>();
 
-        patienceTimer = PatienceTimer();
+        alienController.Initialize(counter, orderController);
+        counter.OnOrderSubmitted += HandleOrderSubmitted;
 
-        StartGame();
+        SpawnNewCustomer();
+    }
+    private void OnDestroy()
+    {
+        counter.OnOrderSubmitted -= HandleOrderSubmitted;
     }
 
-    private void Update()
+    private void SpawnNewCustomer()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        cup.Respawn();
+        if (_currentAlien != null) { _currentAlien.OnLeavedWithNoOrder -= HandleCustomerLeaved; _currentAlien.gameObject.SetActive(false); }
+            
+        _currentAlien = alienController.SpawnAlien();
+
+        _currentAlien.OnLeavedWithNoOrder += HandleCustomerLeaved;
+    }
+
+    private void HandleCustomerLeaved()
+    {
+        SpawnNewCustomer();
+    }
+
+    private void HandleOrderSubmitted()
+    {
+        Debug.Log("HandleOrderSubmitted ");
+        if(_currentAlien.CanGetDrink)
         {
-            CustomerLeaves();
-            AddToScore();
+            cup.Delivered = true;
+            _currentAlien.GetOrderAndWait();
+            orderController.CalculateCurrentScore(_currentAlien, cup);
+            orderController.CanMove += AllowCustomerToLeave;
         }
     }
 
-    private void StartGame()
+    private void AllowCustomerToLeave()
     {
-        StartCoroutine(CallNextCustomerAfterDelay());
+        orderController.CloseBubble();
+        orderController.CanMove -= AllowCustomerToLeave;
+        StartCoroutine(WaitALittleBit());
+        _currentAlien.Leave();
     }
 
-    public void AddToScore()
+    IEnumerator WaitALittleBit()
     {
-        score = CalculateScore();
-        Debug.Log(score);
+        yield return new WaitForSeconds(2f);
+        SpawnNewCustomer();
     }
+    //private void StartGame()
+    //{
+    //    StartCoroutine(CallNextCustomerAfterDelay());
+    //}
 
-    public void CustomerLeaves()
-    {
-        StopAllCoroutines();
-        alienController.UnspawnAlien();
+    //public void AddToScore()
+    //{
+    //    score = CalculateScore();
+    //    Debug.Log(score);
+    //}
 
-        StartCoroutine(CallNextCustomerAfterDelay());
-        satisfactionIndicator.gameObject.SetActive(false);
-    }
+    //public void CustomerLeaves()
+    //{
+    //    StopAllCoroutines();
+    //    alienController.UnspawnAlien();
 
-    private float CalculateScore()
-    {
-        float newScore = score + (currentStars / amountOfCustomers);
-        return newScore;
-    }
+    //    StartCoroutine(CallNextCustomerAfterDelay());
+    //    satisfactionIndicator.gameObject.SetActive(false);
+    //}
 
-    private IEnumerator CallNextCustomerAfterDelay()
-    {
-        if (currentAlien < amountOfCustomers)
-        {
-            yield return new WaitForSeconds(delayBetweenCustomers);
-            alienController.SpawnAlien();
-            StartCoroutine (PatienceTimer());
+    //private float CalculateScore()
+    //{
+    //    float newScore = score + (currentStars / amountOfCustomers);
+    //    return newScore;
+    //}
 
-            currentAlien++;
-        }
-    }
+    //private IEnumerator CallNextCustomerAfterDelay()
+    //{
+    //    if (currentAlien < amountOfCustomers)
+    //    {
+    //        yield return new WaitForSeconds(delayBetweenCustomers);
+    //        alienController.SpawnAlien();
+    //        StartCoroutine (PatienceTimer());
 
-    private IEnumerator PatienceTimer()
-    {
-        yield return new WaitForSeconds(0.4f);
-        Debug.Log("patience at 3 stars");
-        currentStars = 3f;
-        satisfactionIndicator.sprite = satisfactionHappy;
-        satisfactionIndicator.gameObject.SetActive(true);
+    //        currentAlien++;
+    //    }
+    //}
 
-        float delay = customerPatienceAmount / 3f;
+    //private IEnumerator PatienceTimer()
+    //{
+    //    yield return new WaitForSeconds(0.4f);
+    //    Debug.Log("patience at 3 stars");
+    //    currentStars = 3f;
+    //    satisfactionIndicator.sprite = satisfactionHappy;
+    //    satisfactionIndicator.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(delay);
-        Debug.Log("patience at 2 stars");
-        //change indicator sprite
-        satisfactionIndicator.sprite = satisfactionMeh;
-        currentStars = 2f;
+    //    float delay = customerPatienceAmount / 3f;
 
-        yield return new WaitForSeconds(delay);
-        Debug.Log("patience at 1 stars");
-        //change indicator sprite
-        satisfactionIndicator.sprite = satisfactionAngry;
-        currentStars = 1f;
+    //    yield return new WaitForSeconds(delay);
+    //    Debug.Log("patience at 2 stars");
+    //    //change indicator sprite
+    //    satisfactionIndicator.sprite = satisfactionMeh;
+    //    currentStars = 2f;
 
-        yield return new WaitForSeconds(delay);
-        Debug.Log("patience at 0 stars");
-        currentStars = 0f;
-        AddToScore();
-        alienController.UnspawnAlien();
-        satisfactionIndicator.gameObject.SetActive(false);
+    //    yield return new WaitForSeconds(delay);
+    //    Debug.Log("patience at 1 stars");
+    //    //change indicator sprite
+    //    satisfactionIndicator.sprite = satisfactionAngry;
+    //    currentStars = 1f;
 
-        StartCoroutine(CallNextCustomerAfterDelay());
-    }
+    //    yield return new WaitForSeconds(delay);
+    //    Debug.Log("patience at 0 stars");
+    //    currentStars = 0f;
+    //    AddToScore();
+    //    alienController.UnspawnAlien();
+    //    satisfactionIndicator.gameObject.SetActive(false);
+
+    //    StartCoroutine(CallNextCustomerAfterDelay());
+    //}
 }

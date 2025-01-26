@@ -1,52 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AlienController : MonoBehaviour
 {
-    [SerializeField] List<GameObject> aliens = new List<GameObject>();
+    [SerializeField] Image satisfactionIndicator;
+    [SerializeField] List<GameObject> gameObjectAliens = new List<GameObject>();
+    List<Alien> aliens = new List<Alien>();
     [SerializeField] Transform aliensParent;
-    [SerializeField] float startDialogDelay = 0.4f;
+    [SerializeField] float patienceAmount = 15f;
+    //[SerializeField] float startDialogDelay = 0.4f;
 
-    [Header("References")]
-    [SerializeField] OrderController orderController;
+    private Alien currentAlien;
+    private OrderController _orderController;
+    private Counter _counter;
 
-    private GameObject currentAlien;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize(Counter counter, OrderController orderController)
     {
-        
+        _counter = counter;
+        _orderController = orderController;
+        foreach (GameObject gm in gameObjectAliens)
+        {
+            aliens.Add(gm.GetComponent<Alien>());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Alien SpawnAlien()
     {
-     
+        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)], aliensParent);
+        currentAlien.Initialize(_orderController, _orderController.CreateRandomOrder(), satisfactionIndicator, patienceAmount);
+        return currentAlien;
+        //StartCoroutine(StartDialogAfterDelay());
     }
 
-    public void SpawnAlien()
-    {
-        currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)],aliensParent);
-        StartCoroutine(StartDialogAfterDelay());
-    }
+    //public void UnspawnAlien()
+    //{
+    //    currentAlien.GetComponent<Animator>().SetTrigger("Exit");
+    //    orderController.CloseBubble();
+    //    StartCoroutine(DestroyAlienAfterDelay());
+    //}
 
-    public void UnspawnAlien()
-    {
-        currentAlien.GetComponent<Animator>().SetTrigger("Exit");
-        orderController.CloseBubble();
-        StartCoroutine(DestroyAlienAfterDelay());
-    }
+    //private IEnumerator StartDialogAfterDelay()
+    //{
+    //    yield return new WaitForSeconds(startDialogDelay);
+    //    orderController.CreateRandomOrder();
+    //}
 
-    private IEnumerator StartDialogAfterDelay()
-    {
-        yield return new WaitForSeconds(startDialogDelay);
-        orderController.RandomizeOrder();
-    }
-
-    private IEnumerator DestroyAlienAfterDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(currentAlien);
-    }
+    //private IEnumerator DestroyAlienAfterDelay()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(currentAlien);
+    //}
 }
