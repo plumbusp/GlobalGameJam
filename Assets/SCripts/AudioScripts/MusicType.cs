@@ -9,5 +9,7 @@ public enum MusicType
     UpbeatMusic,
     GroovyMenuMusic,
     CosmicMusic,
-    FantasyPianoMusic
+    FantasyPianoMusic,
+    CosmicMenuMusic,
+    CosmicGameMusic
 }

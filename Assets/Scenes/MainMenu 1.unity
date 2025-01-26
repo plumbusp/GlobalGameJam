@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 902721131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de7218aa8908d1468bebbaba0716963, type: 3}
+  m_Script: {fileID: 11500000, guid: fc8cce36976c76640b79ecee6209770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &902721133
@@ -1758,10 +1758,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 902721132}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: HandleSettings
-        m_Mode: 1
+      - m_Target: {fileID: 867559834}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1364658776}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2688,7 +2700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: musicObjects.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: SFXObjects.Array.data[2].<clip>k__BackingField
@@ -2735,6 +2747,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fb2f134921e22be478393a9da50c8a9c, type: 3}
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: musicObjects.Array.data[5].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: d8964a6e47ead0f469e1e53764669c45, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: musicObjects.Array.data[6].<clip>k__BackingField
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c39a7c0010f1794a9bb5f1bb8947bd4, type: 3}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: SFXObjects.Array.data[2].<sfxType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -2773,6 +2793,14 @@ PrefabInstance:
     - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: musicObjects.Array.data[4].<musicType>k__BackingField
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: musicObjects.Array.data[5].<musicType>k__BackingField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264965478239409922, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
+      propertyPath: musicObjects.Array.data[6].<musicType>k__BackingField
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5926623399766697483, guid: 8660d78c8c7ea2745b9f1942eb08636a, type: 3}
       propertyPath: m_Name
