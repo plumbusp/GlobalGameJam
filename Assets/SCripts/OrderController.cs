@@ -107,28 +107,22 @@ public class OrderController : MonoBehaviour
 
         textController.OnSentenceEnded += InVokeCanMove;
         cup.CountContents(out particleAmount,out liquidsUsed,out primaryLiquidID,out bobaCount);
-        if (particleAmount < _goodParticleAmount)
-        {
-            currentStars -= 0.3f;
-            textController.StartDialog(tooLittleLiquidLine);
-            //if (liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
-            //{
-            //    currentStars -= 0.3f;
-            //    if (bobaCount < _goodBobaAmount)
-            //    {
-            //        currentStars -= 0.3f;
-            //    }
-            //}
-        }
-        else if(liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
+
+        if(liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
         {
             currentStars -= 0.7f;
             textController.StartDialog(differentFlavourLine);
         }
+        else  if (particleAmount < _goodParticleAmount)
+        {
+            currentStars -= 0.3f;
+            textController.StartDialog(tooLittleLiquidLine);
+        }
+
         else if(bobaCount < _goodBobaAmount)
         {
             currentStars -= 0.3f;
-            textController.StartDialog(differentFlavourLine);
+            textController.StartDialog(tooLittleBobaLine);
         }
         else
         {
@@ -141,6 +135,12 @@ public class OrderController : MonoBehaviour
 
     private void InVokeCanMove()
     {
+        StartCoroutine(WaitALittleBit());
+    }
+
+    IEnumerator WaitALittleBit()
+    {
+        yield return new WaitForSeconds(1f);
         CanMove?.Invoke();
         textController.OnSentenceEnded -= InVokeCanMove;
     }
