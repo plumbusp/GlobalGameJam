@@ -97,8 +97,9 @@ public class OrderController : MonoBehaviour
         flavourPaper3.gameObject.SetActive(false);
     }
 
-    public void CalculateCurrentScore(Alien alien, Cup cup)
+    public float CalculateCurrentScore(Alien alien, Cup cup)
     {
+        textController.Stoptext();
         float particleAmount;
         float liquidsUsed;
         float primaryLiquidID;
@@ -108,20 +109,26 @@ public class OrderController : MonoBehaviour
         textController.OnSentenceEnded += InVokeCanMove;
         cup.CountContents(out particleAmount,out liquidsUsed,out primaryLiquidID,out bobaCount);
 
-        if(liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
+        if(particleAmount <= 3)
         {
-            currentStars -= 0.7f;
+            currentStars = 0;
+            textController.StartDialog("Are you kidding me? There is nothing in my cup!");
+        }
+
+        else if(liquidsUsed > 1 || primaryLiquidID != alien.DesiredFlavourID)
+        {
+            currentStars -= 1f;
             textController.StartDialog(differentFlavourLine);
         }
         else  if (particleAmount < _goodParticleAmount)
         {
-            currentStars -= 0.3f;
+            currentStars -= 1f;
             textController.StartDialog(tooLittleLiquidLine);
         }
 
         else if(bobaCount < _goodBobaAmount)
         {
-            currentStars -= 0.3f;
+            currentStars -= 1f;
             textController.StartDialog(tooLittleBobaLine);
         }
         else
@@ -129,8 +136,9 @@ public class OrderController : MonoBehaviour
             textController.StartDialog("Thank you!");
         }
 
-        float newTotalScore = totalScore + (currentStars / currentAlien);
-        Debug.Log("TOTAL SCORE" + newTotalScore);
+        //float newTotalScore = totalScore + (currentStars / currentAlien);
+        totalScore += currentStars;
+        return totalScore / currentAlien;
     }
 
     private void InVokeCanMove()

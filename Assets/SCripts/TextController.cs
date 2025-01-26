@@ -29,6 +29,12 @@ public class TextController : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
+    public void Stoptext()
+    {
+        StopAllCoroutines();
+        _speachText.text = "";
+    }
+
     private IEnumerator TypeSentence(string sentence)
     {
         Debug.Log("Typing...");

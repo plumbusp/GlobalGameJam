@@ -11,6 +11,7 @@ public class GameHandler : MonoBehaviour
     [Header("References")]
     [SerializeField] Counter counter;
     [SerializeField] Cup cup;
+    [SerializeField] EndGameController endGameController;
 
     [Header("Game variables")]
     //[SerializeField] int amountOfCustomers = 8;
@@ -21,11 +22,13 @@ public class GameHandler : MonoBehaviour
     [Header("UI elements")]
 
 
-    //private float score;
-    private float currentStars = 0f;
-    //private int currentAlien = 0;
+    ////private float score;
+    //private float currentStars = 0f;
+    ////private int currentAlien = 0;
 
-    private IEnumerator patienceTimer;
+    //private IEnumerator patienceTimer;
+    float score;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,7 +68,8 @@ public class GameHandler : MonoBehaviour
         {
             cup.Delivered = true;
             _currentAlien.GetOrderAndWait();
-            orderController.CalculateCurrentScore(_currentAlien, cup);
+            score = orderController.CalculateCurrentScore(_currentAlien, cup);
+            endGameController.RepresentCurrentScore(score);
             orderController.CanMove += AllowCustomerToLeave;
         }
     }
