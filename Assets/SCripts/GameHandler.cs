@@ -49,6 +49,7 @@ public class GameHandler : MonoBehaviour
         if (_currentAlien != null)
             _currentAlien.OnLeavedWithNoOrder -= HandleCustomerLeaved;
         _currentAlien = alienController.SpawnAlien();
+
         _currentAlien.OnLeavedWithNoOrder += HandleCustomerLeaved;
     }
 
@@ -70,6 +71,7 @@ public class GameHandler : MonoBehaviour
 
     private void AllowCustomerToLeave()
     {
+        orderController.CloseBubble();
         orderController.CanMove -= AllowCustomerToLeave;
         _currentAlien.Leave();
         SpawnNewCustomer();

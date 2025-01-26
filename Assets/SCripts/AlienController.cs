@@ -29,7 +29,7 @@ public class AlienController : MonoBehaviour
     public Alien SpawnAlien()
     {
         currentAlien = Instantiate(aliens[Random.Range(0, aliens.Count)], aliensParent);
-        currentAlien.Initialize(_counter, _orderController.CreateRandomOrder(), satisfactionIndicator, patienceAmount);
+        currentAlien.Initialize(_orderController, _orderController.CreateRandomOrder(), satisfactionIndicator, patienceAmount);
         return currentAlien;
         //StartCoroutine(StartDialogAfterDelay());
     }

@@ -13,6 +13,7 @@ public class Alien : MonoBehaviour
     [SerializeField] Sprite satisfactionMeh;
     [SerializeField] Sprite satisfactionAngry;
     private Image _satisfactionIndicator;
+    private OrderController _orderController;
 
     [Header("Speach Sound")]
     [SerializeField] private SFXType speachSound;
@@ -25,13 +26,14 @@ public class Alien : MonoBehaviour
     public int CurrentStars {  get; private set; }
     public bool CanGetDrink{  get; private set; }
 
-    public void Initialize(Counter counter, int desiredFlavourID, Image satisfactionIndicator, float patienceAmount)
+    public void Initialize(OrderController orderController, int desiredFlavourID, Image satisfactionIndicator, float patienceAmount)
     {
         _animator = GetComponent<Animator>();
 
         _patienceAmount = patienceAmount;
         DesiredFlavourID = desiredFlavourID;
         _satisfactionIndicator = satisfactionIndicator;
+        _orderController = orderController;
 
         CurrentStars = 3;
         _animator.SetTrigger("Appear");
@@ -59,6 +61,7 @@ public class Alien : MonoBehaviour
     private IEnumerator PatienceTimer()
     {
         CanGetDrink = true;
+        _orderController.StartTextBubble();
         Debug.Log("patience at 3 stars");
 
         _satisfactionIndicator.gameObject.SetActive(true);
