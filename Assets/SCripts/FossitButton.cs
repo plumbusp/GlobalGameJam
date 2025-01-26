@@ -29,6 +29,7 @@ public class FossitButton : MonoBehaviour
     {
         if(!_correspondingFossit.IsOpen)
         {
+            AudioManager.instance.PlayAudioTwo(SFXType.PopSound);
             _correspondingFossit.Open();
         }
         else
@@ -37,6 +38,7 @@ public class FossitButton : MonoBehaviour
             if (_currentCoroutine != null)
                 StopAllCoroutines();
             _currentCoroutine = StartCoroutine(PressButton());
+            //AudioManager.instance.StopAudioOverTwo();
         }
         
     }

@@ -68,6 +68,7 @@ public class GameHandler : MonoBehaviour
         {
             cup.Delivered = true;
             _currentAlien.GetOrderAndWait();
+            AudioManager.instance.PlayAudioOver(SFXType.SubmitOrder);
             score = orderController.CalculateCurrentScore(_currentAlien, cup);
             endGameController.RepresentCurrentScore(score);
             orderController.CanMove += AllowCustomerToLeave;

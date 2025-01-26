@@ -18,5 +18,7 @@ public enum SFXType
     AlienVoice4,
     BuublePop1,
     BuublePop2, 
-    OpenFottit
+    OpenFossit,
+    GrabCup,
+    SubmitOrder
 }

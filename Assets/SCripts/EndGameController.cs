@@ -43,7 +43,7 @@ public class EndGameController : MonoBehaviour
     {
         if (gameEnded)
         {
-            if (Input.anyKey)
+            if (Input.anyKeyDown)
             {
                 SceneManager.LoadScene(0);
             }

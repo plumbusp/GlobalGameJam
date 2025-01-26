@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3529412, g: 0.454902, b: 0.52156866, a: 1}
+  m_Color: {r: 0.23064256, g: 0.49618638, b: 0.6698113, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0.7216981, a: 1}
+  m_Color: {r: 0.8490566, g: 0.7358872, b: 0.33241364, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2368,7 +2368,7 @@ MonoBehaviour:
   - {fileID: 2655769678490118605, guid: 33626bcb56448d64a971dd0cd8c8bec0, type: 3}
   - {fileID: 2655769678490118605, guid: f9c218e19a4583443b5ba3a303e6044e, type: 3}
   aliensParent: {fileID: 1781889561}
-  patienceAmount: 25
+  patienceAmount: 36
 --- !u!114 &964875955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2446,7 +2446,7 @@ MonoBehaviour:
   fillImage: {fileID: 6911871754718202308}
   sunColor: {r: 0.9921569, g: 0.9921569, b: 0.7176471, a: 1}
   moonColor: {r: 0.3529412, g: 0.454902, b: 0.5254902, a: 1}
-  timeUntilGameEndSec: 20
+  timeUntilGameEndSec: 200
   endGameStarSlider: {fileID: 1790876486}
   currentStarSlider: {fileID: 504581648}
   endGamePanel: {fileID: 1295054162}

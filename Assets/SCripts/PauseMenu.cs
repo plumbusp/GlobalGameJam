@@ -22,6 +22,8 @@ public class PauseMenu : MonoBehaviour
 
     private void PauseGame()
     {
+        AudioManager.instance.StopAudioOver();
+        AudioManager.instance.StopAudioOverTwo();
         pausePanel.SetActive(true);
         paused = true;
         blockCollider.enabled = true;

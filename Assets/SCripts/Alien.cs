@@ -71,13 +71,13 @@ public class Alien : MonoBehaviour
         _satisfactionIndicator.sprite = satisfactionHappy;
         CurrentStars = 3;
         float delay = _patienceAmount / 3f;
-        yield return new WaitForSeconds(delay + 3);
+        yield return new WaitForSeconds(delay + 6);
 
         Debug.Log("patience at 2 stars");
         _satisfactionIndicator.gameObject.SetActive(true);
         _satisfactionIndicator.sprite = satisfactionMeh;
         CurrentStars = 2;
-        yield return new WaitForSeconds(delay - 3);
+        yield return new WaitForSeconds(delay - 6);
 
         Debug.Log("patience at 1 stars");
         _satisfactionIndicator.sprite = satisfactionAngry;

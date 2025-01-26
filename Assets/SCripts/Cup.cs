@@ -33,6 +33,7 @@ public class Cup : MonoBehaviour
             _follow = value;
             if(_follow == true)
             {
+                AudioManager.instance.PlayAudio(SFXType.GrabCup);
                 _rb1.gravityScale = -Mathf.Abs(_rb1.gravityScale);
             }
             else
